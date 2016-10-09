@@ -1,0 +1,24 @@
+{
+  "name": "clickerwar",
+  "version": "1.0.0",
+  "description": "this is a multiplayer clicker game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marek Newton",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.14.1",
+    "http": "0.0.0",
+    "mongodb": "^2.2.10",
+    "mongoose": "^4.6.3",
+    "nodemon": "^1.11.0",
+    "socket.io": "^1.5.0"
+  }
+}

@@ -1,0 +1,12 @@
+<script src="/js/socket.js"></script>
+<h1> Join A Game </h1>
+<form action="/join" method="POST" id="joinForm">
+  <input type="text" name="password">
+  <input type="text" name="name" id="playerName">
+  <button type="submit">Join Game</button>
+</form>
+{{#if message}}
+  <div class="alert alert-danger">
+    {{message}}
+  </div>
+{{/if}}

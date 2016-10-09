@@ -1,0 +1,24 @@
+<script src="/js/socket.js"></script>
+<script>
+var socket = io();
+console.log("panda");
+socket.on('player name', function(name) {
+  console.log(name);
+  console.log("panda yay")
+});
+</script>
+<h1> waiting for game to start</h1>
+<h3> Password: {{password}}</h3>
+<h3> players </h3>
+<ol id="playerList">
+  {{# each players}}
+    <li> {{this}} </li>
+  {{/each}}
+</ol>
+{{# if owner}}
+  <form action"/wait" method="POST">
+    <button type="submit">start game </button>
+  </form>
+{{else}}
+  <h3> your game will begin when the owner wants it to</h3>
+{{/if}}
