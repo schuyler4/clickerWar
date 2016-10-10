@@ -1,5 +1,6 @@
 'use strict'
 const mongoose = require('mongoose');
+const express = require('express');
 
 const gameSchema = mongoose.Schema({
   password: String,
@@ -9,6 +10,7 @@ const gameSchema = mongoose.Schema({
 });
 
 const Game = mongoose.model('Game', gameSchema);
+exports.Game = Game
 
 exports.home = function(req, res) {
   res.render('home');
@@ -38,18 +40,21 @@ exports.join = function(req, res) {
 }
 
 exports.postjoin = function(req, res) {
-  let password = req.body.password;
-  Game.findOne({password: password}, function(err, game) {
+  Game.findOne({password: req.body.password}, function(err, game) {
     if(game && game.open) {
-      let query = {password : req.body.password};
-      let update = {$push:{players:req.body.name}};
-      Game.findOneAndUpdate(query, update, {new: true}, function(err, update) {
-        req.session.name = req.body.name;
-        res.redirect('/wait/' + game.id);
-      })
+
+      let password = req.body.password;
+      let name = req.body.name;
+      let query = {password : password};
+      let update = {$push:{players:name}};
+
+      Game.findOneAndUpdate(query, update, {new: true});
+      req.session.name = name;
+      res.redirect('/wait/' + game.id);
+
     } else {
-      req.flash('joinError',
-      'there is not game with this password waiting for players');
+      req.flash("joinError", 'there is no game with the password you entered');
+      res.redirect('/join')
     }
   });
 }
@@ -59,9 +64,6 @@ exports.wait = function(req, res) {
   let id = req.params.id;
   let owner = session.owner;
   let name = session.name;
-
-  console.log(req.session.owner);
-  console.log(req.session.name);
 
   Game.findById(id, function(err, game) {
     res.render('wait', {
@@ -73,8 +75,12 @@ exports.wait = function(req, res) {
   });
 }
 
-exports.postwait = function(req, res) {
+exports.socketwait = function(socket) {
 
+}
+
+exports.deletegame = function(socket) {
+  socket.on()
 }
 
 exports.game = function(req, res) {

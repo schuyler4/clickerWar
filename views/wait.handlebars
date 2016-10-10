@@ -1,14 +1,7 @@
 <script src="/js/socket.js"></script>
-<script>
-var socket = io();
-console.log("panda");
-socket.on('player name', function(name) {
-  console.log(name);
-  console.log("panda yay")
-});
-</script>
+<script src="/js/endGame.js"></script>
 <h1> waiting for game to start</h1>
-<h3> Password: {{password}}</h3>
+<h3> Password: <h3 id="password">{{password}}</h3></h3>
 <h3> players </h3>
 <ol id="playerList">
   {{# each players}}

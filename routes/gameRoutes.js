@@ -9,7 +9,6 @@ module.exports = function(app) {
   app.post('/join', game.postjoin);
 
   app.get('/wait/:id', game.wait);
-  app.post('/wait', game.postwait);
 
   app.get('/game', game.game);
   app.post('/game', game.postgame);
